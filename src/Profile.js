@@ -1,17 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Profile extends Component {
-  render() {
-    //console.log(this.props);
-    const { name, occupation } = this.props;
+const Friends = ({ friends, deleteFriend }) => {
+  const friendList = friends.map((friend) => {
     return (
-      <div className="profile">
-        <div>Profile</div>
-        <div>Name: {name}</div>
-        <div>Occupation: {occupation}</div>
+      <div className="friend" key={friend.id}>
+        <div>Name: {friend.name}</div>
+        <div>Age: {friend.age}</div>
+        <div>Occupation: {friend.occupation}</div>
+        <button
+          onClick={() => {
+            deleteFriend(friend.id);
+          }}>
+          Delete Friend
+        </button>
       </div>
     );
-  }
-}
+  });
+  return (
+    <div className="friend-list">
+      <div>Profile</div>
+      <div>{friendList}</div>
+    </div>
+  );
+};
 
-export default Profile;
+export default Friends;
